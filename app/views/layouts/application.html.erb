@@ -30,12 +30,10 @@
                   <a class="nav-link text-light" href="/home/about">
                     <i class="fas fa-link"></i> About</a>
                 </li>
-                        <% if user_signed_in? %>
-                <li>
-                  <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-                  <i class="fas fa-link"></i> Log out</a>
-                </li>
+             <% if user_signed_in? %>
 
+                  <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link text-light" %>
+                  <%= link_to "Books", books_path, class: "nav-link text-light" %>
 
 
                   <% else %>
@@ -47,7 +45,7 @@
                   <a class="nav-link text-light" href="/users/sign_in">
                     <i class="fas fa-sign-in-alt"></i> Log in</a>
                 </li>
-                <% end %>
+              <% end %>
               </ul>
             </div>
 
