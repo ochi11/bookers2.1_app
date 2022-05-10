@@ -7,31 +7,33 @@
 
     </div>
       <div class='col-md-8 offset-md-1'>
-          <h1>Books</h1>
+          <h1>Users</h1>
           <table>
             <thead>
               <tr>
                 <th>
-                  <p>Title</p>
+                  <p>image</p>
                 </th>
                 <th>
-                  <p>Opinion</p>
+                  <p>name</p>
                 </th>
               </tr>
             </thead>
             <tbody>
-              <% @user.books.each do |book| %>
+              <% @users.each do |user| %>
               <tr>
                 <th>
-                  <%= link_to user_path(@user.id) do %>
-                    <p><%= image_tag @user.get_profile_image(100,100) %></p>
-                    <% end %>
-                  <%= link_to book_path(book.id) do %>
-                  <span><%= book.title %></span>
+                  <% if current_user.image.attached? %>
+                    <%= image_tag current_user.image, size: "100x100" %>
+                  <% else %>
+                    <%= image_tag 'no_image', size: "100x100" %>
                   <% end %>
                 </th>
                 <th>
-                  <span><%= book.body %></span>
+                  <span><%= user.name %></span>
+                </th>
+                <th>
+                  <%= link_to "Show", user_path(user.id) %>
                 </th>
               </tr>
               <% end %>
@@ -40,3 +42,4 @@
       </div>
   </div>
 </div>
+
