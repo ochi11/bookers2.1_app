@@ -1,9 +1,18 @@
 <div class = "container">
   <div class = "row">
     <div class = "col-3">
+
+<% if @book.errors.any? %>
+    <%= @book.errors.count %>件のerrorが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
         <p id="notice"></p>
 　　<%= render 'list', book: @book, user: @user %>
-
 
     </div>
       <div class='col-md-8 offset-md-1'>

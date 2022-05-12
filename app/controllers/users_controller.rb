@@ -11,8 +11,13 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
+   if @user.save
     flash[:notice] = "You have updated user successfully."
     redirect_to user_path(@user.id)
+   else
+    @users = User.all
+    render :edit
+   end
   end
 
   def index
