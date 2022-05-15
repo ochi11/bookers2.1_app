@@ -1,8 +1,43 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col-3">
+    <div class = "col-md-3">
         <p id="notice"></p>
-　　<%= render 'books/list', book: @book, user: @user %>
+　　<h1>User info</h1>
+  <% if @user.profile_image.attached? %>
+    <%= image_tag @user.profile_image, size: "100x100" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "100x100" %>
+  <% end %>
+  <table class="table">
+    <tbody>
+      <tr></tr>
+      <tr>
+        <th>name <%= @user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction <%= @user.introduction %></th>
+        <th></th>
+      </tr>
+    </tbody>
+  </table>
+
+<%= link_to edit_user_path(@user.id), class: "btn btn-secondary btn-block" do %>
+    <i class="fas fa-user-cog"></i>
+    <% link_to user_path(@user.id) unless @user == current_user %>
+<% end %>
+
+
+  <h1>New book</h1>
+  <!-- form_with部分 -->
+  <%= form_with model: @book, local: true, url: '/books', method: :post do |f| %>
+      <h4>Title</h4>
+      <%= f.text_field :title %>
+
+      <h4>Opinion</h4>
+      <%= f.text_area :body %>
+
+      <h4><%= f.submit 'Create Book' %></h4>
+  <% end %>
 
 
     </div>

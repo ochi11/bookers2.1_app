@@ -1,6 +1,6 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col-3">
+    <div class = "col-md-3">
 
 <% if @book.errors.any? %>
     <%= @book.errors.count %>件のerrorが発生しました
@@ -32,9 +32,11 @@
               <% @books.each do |book| %>
               <tr>
                 <th>
-                  <%= image_tag book.user.get_profile_image(100,100) %>
+                  <%= link_to user_path(book.user) do %>
+                    <%= image_tag book.user.get_profile_image(100,100) %>
+                  <% end %>
                   <%= link_to book_path(book.id) do %>
-                  <span><%= book.title %></span>
+                    <span><%= book.title %></span>
                   <% end %>
                 </th>
                 <th>

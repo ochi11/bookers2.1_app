@@ -1,6 +1,6 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col-3">
+    <div class = "col-md-3">
         <p id="notice"></p>
 　　<%= render 'books/list', book: @book, user: @user %>
 
@@ -23,8 +23,8 @@
               <% @users.each do |user| %>
               <tr>
                 <th>
-                  <% if current_user.image.attached? %>
-                    <%= image_tag current_user.image, size: "100x100" %>
+                  <% if current_user.profile_image.attached? %>
+                    <%= image_tag current_user.profile_image, size: "100x100" %>
                   <% else %>
                     <%= image_tag 'no_image', size: "100x100" %>
                   <% end %>

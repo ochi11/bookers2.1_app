@@ -1,8 +1,8 @@
 
 
 <h1>User info</h1>
-  <% if current_user.image.attached? %>
-    <%= image_tag current_user.image, size: "100x100" %>
+  <% if user.profile_image.attached? %>
+    <%= image_tag user.profile_image, size: "100x100" %>
   <% else %>
     <%= image_tag 'no_image', size: "100x100" %>
   <% end %>
@@ -10,21 +10,18 @@
     <tbody>
       <tr></tr>
       <tr>
-        <th>name <%= current_user.name %></th>
+        <th>name <%= user.name %></th>
       </tr>
       <tr>
-        <th>introduction <%= current_user.introduction %></th>
+        <th>introduction <%= user.introduction %></th>
         <th></th>
       </tr>
     </tbody>
   </table>
 
-<%= link_to "あとで", edit_user_path(current_user.id), class: "btn btn-secondary" %>
-
-
-  <a class="btn btn-outline-secondary btn-block">
+<%= link_to edit_user_path(user.id), class: "btn btn-secondary btn-block" do %>
     <i class="fas fa-user-cog"></i>
-  </a>
+<% end %>
 
   <h1>New book</h1>
   <!-- form_with部分 -->

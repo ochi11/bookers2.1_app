@@ -1,40 +1,46 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col-3">
+    <div class = "col-md-3">
         <p id="notice"></p>
-　　<%= render 'list', book: @new_book, user: @user  %>
+　　<%= render 'list', book: @new_book, user: @book.user  %>
 
 
     </div>
       <div class='col-md-8 offset-md-1'>
           <h1>Book detail</h1>
-          <table>
-            <thead>
+          <table class = "table">
+            <tbody>
               <tr>
                 <th>
+
                      <%= link_to user_path(@book.user.id) do %>
-                     <p><%= image_tag @book.user.get_profile_image(100,100) %></p>
+　　　　　　　　　　  <% if @book.user.profile_image.attached? %>
+                        <%= image_tag @book.user.profile_image, size: "100x100" %>
+                      <% else %>
+                        <%= image_tag 'no_image' %>
+                      <% end %>
+                        <%= @book.user.name %>
                      <% end %>
+
+                </th>
+                <th>
+
                 </th>
                 <th>
                     <%= link_to book_path(@book.id) do %>
-                    <span><%= @book.title %></span>
+                    <%= @book.title %>
                     <% end %>
                 </th>
                 <th>
-                  <span><%= @book.body %></span>
+                    <%= @book.body %>
                 </th>
                 <th>
-                  <td><%= link_to "Edit", edit_book_path(@book.id) %></td>
-                  <td><%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+                  <% if @book.user == current_user %>
+                    <td><%= link_to "Edit", edit_book_path(@book.id) %></td>
+                    <td><%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+                  <% end %>
                 </th>
-                <th colspan="3"></th>
               </tr>
-            </thead>
-            <tbody>
-
-
-
             </tbody>
           </table>
       </div>
